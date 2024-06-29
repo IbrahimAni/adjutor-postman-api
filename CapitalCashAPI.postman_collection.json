@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "205f8b83-513c-4736-a307-a1404c3ae41a",
+		"name": "CapitalCashAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26184010"
+	},
+	"item": [
+		{
+			"name": "Bank validation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Store response as a variable\r",
+							"var responseBody = pm.response.json();\r",
+							"\r",
+							"// Varify response code\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response messgae\r",
+							"pm.test(\"Response message is 'Succesful'\", () => {\r",
+							"    var message = responseBody.message\r",
+							"\r",
+							"    pm.expect(message).to.equal(\"Successful\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"0245429157\",\r\n    \"bank_code\": \"058\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v2/verification/bankaccount",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"verification",
+						"bankaccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Karma",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Store response as a variable\r",
+							"var responseBody = pm.response.json();\r",
+							"\r",
+							"// Varify response code\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response messgae\r",
+							"pm.test(\"Response message is 'Succesful'\", () => {\r",
+							"    var message = responseBody.message\r",
+							"\r",
+							"    pm.expect(message).to.equal(\"Successful\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/verification/karma/:identity",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"verification",
+						"karma",
+						":identity"
+					],
+					"variable": [
+						{
+							"key": "identity",
+							"value": "0zspgifzbo.ga"
+						}
+					]
+				},
+				"description": "\nThis endpoint makes an HTTP GET request to retrieve verification details for a specific identity. The request should be made to {{baseUrl}}/verification/karma/:identity, where \":identity\" should be replaced with the actual identity value.\n\n### Response\nThe response will have a status code of 200 and a Content-Type of application/json. The body of the response will be a JSON object with the following structure:\n\n```json\n{\n    \"status\": \"\",\n    \"message\": \"\",\n    \"data\": {\n        \"karma_identity\": \"\",\n        \"amount_in_contention\": \"\",\n        \"reason\": null,\n        \"default_date\": \"\",\n        \"karma_type\": {\n            \"karma\": \"\"\n        },\n        \"karma_identity_type\": {\n            \"identity_type\": \"\"\n        },\n        \"reporting_entity\": {\n            \"name\": \"\",\n            \"email\": \"\"\n        }\n    },\n    \"deprecation\": {\n        \"message\": \"\"\n    },\n    \"meta\": {\n        \"cost\": 0,\n        \"balance\": 0\n    }\n}\n```\n\n### Saving the Response\nTo save the response as a JSON, you can simply copy the entire JSON object from the response body and save it as a .json file using a text editor or any JSON viewer.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Bank List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Store response as a variable\r",
+							"var responseBody = pm.response.json();\r",
+							"\r",
+							"// Varify response code\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response messgae\r",
+							"pm.test(\"Response message is 'Succesful'\", () => {\r",
+							"    var message = responseBody.message\r",
+							"\r",
+							"    pm.expect(message).to.equal(\"Successful\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v2/misc/banks",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"misc",
+						"banks"
+					]
+				},
+				"description": "\nThis endpoint makes an HTTP GET request to retrieve verification details for a specific identity. The request should be made to {{baseUrl}}/verification/karma/:identity, where \":identity\" should be replaced with the actual identity value.\n\n### Response\nThe response will have a status code of 200 and a Content-Type of application/json. The body of the response will be a JSON object with the following structure:\n\n```json\n{\n    \"status\": \"\",\n    \"message\": \"\",\n    \"data\": {\n        \"karma_identity\": \"\",\n        \"amount_in_contention\": \"\",\n        \"reason\": null,\n        \"default_date\": \"\",\n        \"karma_type\": {\n            \"karma\": \"\"\n        },\n        \"karma_identity_type\": {\n            \"identity_type\": \"\"\n        },\n        \"reporting_entity\": {\n            \"name\": \"\",\n            \"email\": \"\"\n        }\n    },\n    \"deprecation\": {\n        \"message\": \"\"\n    },\n    \"meta\": {\n        \"cost\": 0,\n        \"balance\": 0\n    }\n}\n```\n\n### Saving the Response\nTo save the response as a JSON, you can simply copy the entire JSON object from the response body and save it as a .json file using a text editor or any JSON viewer.\n\n"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://adjutor.lendsqr.com",
+			"type": "string"
+		}
+	]
+}
